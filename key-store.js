@@ -4,8 +4,9 @@ const shortid = require('shortid');
 // To generate a unique API KEY, use shortid.generate()
 const LINE_ENDING = require('os').EOL;
 
-
 module.exports = function (req, res) {
-
+    let key = shortid.generate();
+    fs.appendFileSync(VALID_KEYS_PATH, key + LINE_ENDING);
+    res.status(201).send({"apiKey": key});
 };
 
